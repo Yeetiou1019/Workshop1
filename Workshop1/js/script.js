@@ -38,6 +38,23 @@ $(document).ready(function () {
         format:kendo.toString("##,#"),//三位一撇
     });
 
+    $(".window").kendoWindow({
+        width:"600px",
+        height:"400px",
+        title:"新增書籍",
+        actions:[
+            "Pin",
+            "Minimuze",
+            "Maximize",
+            "Close"
+        ],
+        
+    }).data("kendoWindow").center().open();
+
+    $(".AddBook").kendoButton();
+    $(".AddBook").click(function(){
+        $(".window").data("kendoWindow").open();
+    })
 
   
 
