@@ -15,8 +15,9 @@
     <script src="./js/kendo.all.min.js"></script>
     <script src="./js/uikit.min.js"></script>
     <script src="./js/script.js"></script>
-
-    <title>圖書館</title>
+    <script src="./js/kendo.culture.zh-TW.min.js"></script>
+    <script src="./js/kendo.messages.zh-TW.min.js"></script>
+    <title>圖書館1</title>
 </head>
 
 <body>
@@ -33,53 +34,36 @@
 
                         <ul class="fieldlist">
                             <li>
-                                <img class="book-image" src="image/database.jpg" alt="">
+                                <input class="book-image" src="image/database.jpg" style="width: 100%;"/>
                             </li>
                             <li>
                                 <label class="required">圖書類別</label>
-                                <input id="dropdownlist">
-
-                                <script>
-
-
-                                $(document).ready(function () {
-                                    $("#dropdownlist").kendoDropDownList({
-                                        dataTextField: "text",
-                                        dataValueField: "value",
-                                        dataSource: [{ text: "資料庫", value: "database", src: "image/database.jpg" },
-    { text: "網際網路", value: "internet", src: "image/internet.jpg" },
-    { text: "應用系統整合", value: "system", src: "image/system.jpg" },
-    { text: "家庭保健", value: "home", src: "image/home.jpg" },
-    { text: "語言", value: "language", src: "image/language.jpg" }]
-                                    });
-                                });
-
-                                </script>
-
+                                <input class="BookCategory">
+                                
                             </li>
                             <li>
                                 <label class="required">書名</label>
-                                <input id="book_name" type="text" />
+                                <input class="BookName" type="text" />
                             </li>
                             <li>
                                 <label class="required">作者</label>
-                                <input id="book_author" type="text" />
+                                <input class="BookAuthor" type="text" />
                             </li>
                             <li>
                                 <label class="required">購買日期</label>
-                                <input id="bought_datepicker" />
+                                <input class="BoughtDatepicker" />
                             </li>
                             <li>
                                 <label>送達日期</label>
-                                <input id="delivered_datepicker" />
+                                <input class="DeliveredDatepicker" />
                             </li>
                             <li>
                                 <label class="required">金額</label>
-                                <input id="book_price" type="text" />
+                                <input class="BookPrice" type="text" />
                             </li>
                             <li>
                                 <label class="required">數量</label>
-                                <input id="book_amount" type="text" />
+                                <input class="BookAmount" type="text" />
                             </li>
                             <li>
                                 <span>
@@ -93,11 +77,6 @@
                     </form>
                 </div>
             </div>
-        <script>
-        $(document).ready(function() {
-        $("#window").kendoWindow();
-        });
-            </script>
         </div>
 
         <button type="button" id="add_book" class="k-button k-primary btn-add-book">新增書籍</button>
@@ -109,7 +88,7 @@
     </main>
 
     <footer></footer>
-
+    
 
 
 </body>
