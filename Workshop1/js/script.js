@@ -48,26 +48,42 @@ $(document).ready(function () {
             "Maximize",
             "Close"
         ],
-        
-    }).data("kendoWindow").center().open();
+        visible: false,  
+    }).data("kendoWindow").center();
 
     $(".AddBook").kendoButton();
     $(".AddBook").click(function(){
         $(".window").data("kendoWindow").open();
     })
-
-  
+    //var bookData = 
+    $(".BookGrid").kendoGrid({
+        dataSource:{
+            type: bookData,
+            pageable: true,  
+        },
+        columns:[
+            { command:"destroy",title:"&nbsp;" },
+            { field: "BookId", title:"書籍編號" },
+            { field: "BookName", title:"書籍名稱" },
+            { field: "BookCategory", title:"書籍種類" },
+            { field: "BookAuthor", title: "作者" },
+            { field: "BookBoughtDate", title:"購買日期" },
+            { field: "BookPublisher", title:"送達狀態" },
+            { field: "BookPrice", title:"金額" },
+            { field: "BookAmount", title:"數量" },
+            { field: "BookTotal", title:"總計" }]
+    });
+    function loadBookData() {
+        bookDataFromLocalStorage = JSON.parse(localStorage.getItem('bookData'));
+        if (bookDataFromLocalStorage == null) {
+            bookDataFromLocalStorage = bookData;
+            localStorage.setItem('bookData', JSON.stringify(bookDataFromLocalStorage));
+        }
+    }
+    $(function () {
+        loadBookData();
+    });
 
 
 });
 // 載入書籍資料
-function loadBookData() {
-    bookDataFromLocalStorage = JSON.parse(localStorage.getItem('bookData'));
-    if (bookDataFromLocalStorage == null) {
-        bookDataFromLocalStorage = bookData;
-        localStorage.setItem('bookData', JSON.stringify(bookDataFromLocalStorage));
-    }
-}
-$(function () {
-    loadBookData();
-});
