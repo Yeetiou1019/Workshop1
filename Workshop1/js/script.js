@@ -2,77 +2,102 @@ $(document).ready(function () {
 
     var bookDataFromLocalStorage = [];
     var bookCategoryList = [
-        { text: "資料庫", value: "database", src: "image/database.jpg" },
-        { text: "網際網路", value: "internet", src: "image/internet.jpg" },
+        { text: "資料庫", value: "1", src: "image/database.jpg" },
+        { text: "網際網路", value: "2", src: "image/internet.jpg" },
         { text: "應用系統整合", value: "system", src: "image/system.jpg" },
         { text: "家庭保健", value: "home", src: "image/home.jpg" },
         { text: "語言", value: "language", src: "image/language.jpg" }
     ];
+    /*
     $(".BookCategory").kendoDropDownList(); //轉換為KendoUI 下拉式選單
     $(".BookCategory").kendoDropDownList({  //建立相關屬性
         dataTextField: "text",
         dataValueField: "value",
         dataSource: bookCategoryList,
-        //index: 0,
-        //change: onChange
+        index: 0,
+        change: onChange
     });
-    $(".BookName").kendoMaskedTextBox();
-    $(".BookAuthor").kendoMaskedTextBox();
+    */
+    
+    $(".BookImage").kendoDropDownList({
+        dataTextField: "text",
+        dataValueField: "value",
+        dataSource: bookCategoryList,
+        index: 0,
+        change: onChange
+    });
+    var BookImage = $(".BookImage").data("kendoDropDownList");
+    BookImage.select(0);
+    
+    function onChange() {
+        var value = $(".BookImage").val();
+        $(".BookCategory")
+            .toggleClass("資料庫", value == 1)
+            .toggleClass("網際網路", value == 2);
+
+    };
+
     $(".BoughtDatepicker").kendoDatePicker({
-        format:"yyyy/MM/dd",
-        dateInput : true,
-        culture:"zh-TW",
+        format: "yyyy/MM/dd",
+        dateInput: true,
+
+        culture: "zh-TW",
+
     });
     $(".DeliveredDatepicker").kendoDatePicker({
-        format:"yyyy/MM/dd",
-        dateInput : true,
-        culture:"zh-TW",
+        format: "yyyy/MM/dd",
+        dateInput: true,
+        culture: "zh-TW",
     });
     $(".BookPrice").kendoNumericTextBox({
-        min:0, //禁止輸入負數
-        format:kendo.toString("##,#"),//三位一撇
-        
+        min: 0, //禁止輸入負數
+        format: kendo.toString("##,#"),//三位一撇
+
     });
     $(".BookAmount").kendoNumericTextBox({
-        min:0, //禁止輸入負數
-        format:kendo.toString("##,#"),//三位一撇
-    });
+        min: 0, //禁止輸入負數
+        format: kendo.toString("##,#"),//三位一撇
 
+    });
+    //彈出式視窗
     $(".window").kendoWindow({
-        width:"600px",
-        height:"400px",
-        title:"新增書籍",
-        actions:[
+        width: "600px",
+        height: "400px",
+        title: "新增書籍",
+        actions: [
             "Pin",
             "Minimuze",
             "Maximize",
             "Close"
         ],
-        visible: false,  
+        visible: false,
     }).data("kendoWindow").center();
 
     $(".AddBook").kendoButton();
-    $(".AddBook").click(function(){
+    $(".AddBook").click(function () {
         $(".window").data("kendoWindow").open();
     })
     //var bookData = 
+    //畫面排版與資料欄
     $(".BookGrid").kendoGrid({
-        dataSource:{
+        dataSource: {
             type: bookData,
-            pageable: true,  
+            pageable: true,
         },
-        columns:[
-            { command:"destroy",title:"&nbsp;" },
-            { field: "BookId", title:"書籍編號" },
-            { field: "BookName", title:"書籍名稱" },
-            { field: "BookCategory", title:"書籍種類" },
+        columns: [
+            { command: "destroy", title: "&nbsp;" },
+            { field: "BookId", title: "書籍編號" },
+            { field: "BookName", title: "書籍名稱" },
+            { field: "BookCategory", title: "書籍種類" },
             { field: "BookAuthor", title: "作者" },
-            { field: "BookBoughtDate", title:"購買日期" },
-            { field: "BookPublisher", title:"送達狀態" },
-            { field: "BookPrice", title:"金額" },
-            { field: "BookAmount", title:"數量" },
-            { field: "BookTotal", title:"總計" }]
+            { field: "BookBoughtDate", title: "購買日期" },
+            { field: "BookPublisher", title: "送達狀態" },
+            { field: "BookPrice", title: "金額" },
+            { field: "BookAmount", title: "數量" },
+            { field: "BookTotal", title: "總計" }]
     });
+
+    // 載入書籍資料
     function loadBookData() {
         bookDataFromLocalStorage = JSON.parse(localStorage.getItem('bookData'));
         if (bookDataFromLocalStorage == null) {
@@ -86,4 +111,4 @@ $(document).ready(function () {
 
 
 });
-// 載入書籍資料
+

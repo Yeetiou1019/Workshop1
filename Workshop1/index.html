@@ -17,7 +17,7 @@
     <script src="./js/script.js"></script>
     <script src="./js/kendo.culture.zh-TW.min.js"></script>
     <script src="./js/kendo.messages.zh-TW.min.js"></script>
-    <title>圖書館1</title>
+    <title>圖書館</title>
 </head>
 
 <body>
@@ -34,20 +34,39 @@
 
                         <ul class="fieldlist">
                             <li>
-                                <input class="book-image" src="image/database.jpg" style="width: 100%;"/>
-                            </li>
-                            <li>
+                                <div id="BookCategory" value="資料庫"></div>
+                                <style>
+                                    #BookCategory {
+                                        width: 300px;
+                                        height: 150px;
+                                        margin: 20px auto;
+                                        background-image: url("image/database.jpg");
+                                        background-repeat: no-repeat;
+                                        background-color: transparent;
+                                    }
+                                    .資料庫{
+                                        background-position: 0 0;
+                                        
+                                    }
+                                    .網際網路{
+                                        background-position: 0 0;
+                                       
+                                    }
+                                    .system{
+                                        background-position: 0 0;
+                                    }
+                                </style>
                                 <label class="required">圖書類別</label>
-                                <input class="BookCategory">
-                                
+                                <input class="BookImage" value="1" style="width:100%;" />
+
                             </li>
                             <li>
                                 <label class="required">書名</label>
-                                <input class="BookName" type="text" />
+                                <input id="BookName" class="k-textbox" type="text" />
                             </li>
                             <li>
                                 <label class="required">作者</label>
-                                <input class="BookAuthor" type="text" />
+                                <input id="BookAuthor" class="k-textbox" type="text" />
                             </li>
                             <li>
                                 <label class="required">購買日期</label>
@@ -81,14 +100,14 @@
 
         <button type="button" class="AddBook" class="k-button k-primary btn-add-book">新增書籍</button>
         <div class="BookGrid">
-            
+
         </div>
 
 
     </main>
 
     <footer></footer>
-    
+
 
 
 </body>
