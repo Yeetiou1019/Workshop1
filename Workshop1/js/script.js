@@ -3,21 +3,31 @@ $(document).ready(function () {
     var bookDataFromLocalStorage = [];
     var bookCategoryList = [
         { text: "資料庫", value: "database", src: "image/database.jpg" },
-        { text: "網際網路", value: "internet", src: "image/internet.jpg" },
+        { text: "網際網路", value:"internet", src: "image/internet.jpg" },
         { text: "應用系統整合", value: "system", src: "image/system.jpg" },
         { text: "家庭保健", value: "home", src: "image/home.jpg" },
         { text: "語言", value: "language", src: "image/language.jpg" }
     ];
-    $(".BookCategory").kendoDropDownList(); //轉換為KendoUI 下拉式選單
+    $("BookCategory").kendoDropDownList(); //轉換為KendoUI 下拉式選單
     $(".BookCategory").kendoDropDownList({  //建立相關屬性
         dataTextField: "text",
         dataValueField: "value",
         dataSource: bookCategoryList,
-        //index: 0,
-        //change: onChange
+        change:onChange
     });
-    $(".BookName").kendoMaskedTextBox();
-    $(".BookAuthor").kendoMaskedTextBox();
+    //$(".book-image").data();
+    
+    var imgsrc = document.getElementById("book-image").src;
+    function onChange(){
+        var temp = document.getElementById("BookCategory").value;//抓取下拉選單的值
+        document.getElementById("book-image").src="image/"+temp+".jpg"; //更改圖片檔
+        
+        //alert("image/"+temp+".jpg");
+        
+    };
+
+    $("BookName").kendoMaskedTextBox();
+    $("BookAuthor").kendoMaskedTextBox();
     $(".BoughtDatepicker").kendoDatePicker({
         format:"yyyy/MM/dd",
         dateInput : true,
@@ -73,6 +83,7 @@ $(document).ready(function () {
             { field: "BookAmount", title:"數量" },
             { field: "BookTotal", title:"總計" }]
     });
+    // 載入書籍資料
     function loadBookData() {
         bookDataFromLocalStorage = JSON.parse(localStorage.getItem('bookData'));
         if (bookDataFromLocalStorage == null) {
@@ -86,4 +97,4 @@ $(document).ready(function () {
 
 
 });
-// 載入書籍資料
+
