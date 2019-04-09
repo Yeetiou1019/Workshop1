@@ -65,24 +65,8 @@ $(document).ready(function () {
     $(".AddBook").click(function(){
         $(".window").data("kendoWindow").open();
     })
-    //var bookData = 
-    $(".BookGrid").kendoGrid({
-        dataSource:{
-            type: bookData,
-            pageable: true,  
-        },
-        columns:[
-            { command:"destroy",title:"&nbsp;" },
-            { field: "BookId", title:"書籍編號" },
-            { field: "BookName", title:"書籍名稱" },
-            { field: "BookCategory", title:"書籍種類" },
-            { field: "BookAuthor", title: "作者" },
-            { field: "BookBoughtDate", title:"購買日期" },
-            { field: "BookPublisher", title:"送達狀態" },
-            { field: "BookPrice", title:"金額" },
-            { field: "BookAmount", title:"數量" },
-            { field: "BookTotal", title:"總計" }]
-    });
+    
+    
     // 載入書籍資料
     function loadBookData() {
         bookDataFromLocalStorage = JSON.parse(localStorage.getItem('bookData'));
@@ -94,7 +78,22 @@ $(document).ready(function () {
     $(function () {
         loadBookData();
     });
-
+    $(".BookGrid").kendoGrid({
+        dataSource:{
+            data: bookData,
+            pageable:true,   
+        },
+        columns:[
+            { command:"destroy",title:"&nbsp;" },
+            { field: "BookId", title:"書籍編號" },
+            { field: "BookName", title:"書籍名稱" },
+            { field: "BookCategory", title:"書籍種類" },
+            { field: "BookAuthor", title: "作者" },
+            { field: "BookBoughtDate", title:"購買日期" },
+            { field: "BookPublisher", title:"送達狀態" },
+            { field: "BookPrice", title:"金額" },
+            { field: "BookAmount", title:"數量" },
+            { field: "BookTotal", title:"總計" }],
+    });
 
 });
-
